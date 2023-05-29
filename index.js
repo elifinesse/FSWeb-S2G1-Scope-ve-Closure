@@ -64,10 +64,11 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    const skor = Math.ceil(Math.random() * (25 - 10) + 9);
+    return skor;
 }
-
+console.log(takimSkoru());
 
 
 
@@ -86,10 +87,18 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(callback, ceyrekSayisi){
+  let toplamSkor1 = 0;
+  let toplamSkor2 = 0;
+  for (let i = 0; i < ceyrekSayisi; i++){
+    toplamSkor1 = toplamSkor1 + callback();
+    toplamSkor2 = toplamSkor2 + callback();
+  }
+  return {
+    "EvSahibi": toplamSkor1,
+    "KonukTakim": toplamSkor2
+  }
 }
-
 
 
 
@@ -109,9 +118,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(callback) {
+  const skor1 = callback();
+  const skor2 = callback();
+  return {
+    "EvSahibi": skor1,
+    "KonukTakim": skor2
+  }
 }
 
 
@@ -146,8 +159,8 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi() {
+
 }
 
 

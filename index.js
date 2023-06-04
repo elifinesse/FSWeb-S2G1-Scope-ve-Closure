@@ -100,6 +100,7 @@ function macSonucu(callback, ceyrekSayisi){
   }
 }
 
+console.log(macSonucu(takimSkoru, 4));
 
 
 
@@ -126,6 +127,7 @@ function periyotSkoru(callback) {
     "KonukTakim": skor2
   }
 }
+console.log(periyotSkoru(takimSkoru));
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
@@ -159,10 +161,31 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi() {
-
+function skorTabelasi(callback1, callback2, ceyrek) {
+  const sonucArray = [];
+  let evToplam = 0;
+  let konukToplam = 0;
+  for (let i = 0; i < ceyrek; i++) {
+    let periyotSkor = callback1(callback2);
+    sonucArray.push(`${i+1}. Periyot: Ev Sahibi ${periyotSkor["EvSahibi"]} - Konuk Takım ${periyotSkor["KonukTakim"]}`);
+    evToplam = evToplam + periyotSkor["EvSahibi"];
+    konukToplam = konukToplam + periyotSkor["KonukTakim"];
+    }
+  if (evToplam !== konukToplam) {
+    sonucArray.push(`Maç Sonucu: Ev Sahibi ${evToplam} - Konuk Takım ${konukToplam}`);
+    console.log(sonucArray);
+  } else {
+    do {
+      let uzatmaSayisi = 0;
+      let uzatmaSkor1 = callback1();
+      let uzatmaSkor2 = callback1();
+      skorDizisi.push(`${uzatmaSayisi + 1}. Uzatma: Ev Sahibi ${uzatmaSkor1} - Konuk Takım ${uzatmaSkor2}`)
+      evToplam = evToplam + uzatmaSkor1;
+      konukToplam = konukToplam + uzatmaSkor2;
+    } while (evToplam === konukToplam);
+  }
 }
-
+console.log(skorTabelasi(periyotSkoru, takimSkoru, 1));
 
 
 
